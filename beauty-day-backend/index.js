@@ -12,14 +12,17 @@ app.use(cors());
 app.use(express.json());
 
 /* =====================================================
-   CONEXÃO BANCO DE DADOS (XAMPP PORTA 3308)
+   CONEXÃO BANCO DE DADOS (TiDB Cloud)
 ===================================================== */
 const db = mysql.createPool({
   host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT) || 3306,
+  port: Number(process.env.DB_PORT) || 4000,
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD || '',
+  password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  ssl: {
+    rejectUnauthorized: true // Exigido para conexão segura no TiDB Cloud
+  },
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -28,10 +31,10 @@ const db = mysql.createPool({
 // Teste de conexão ao iniciar
 db.getConnection((err, connection) => {
   if (err) {
-    console.error('❌ Erro ao conectar ao MySQL (Porta 3308):', err.message);
+    console.error('❌ Erro ao conectar ao TiDB Cloud:', err.message);
     return;
   }
-  console.log('✅ Conexão com o banco MySQL estabelecida com sucesso!');
+  console.log('✅ Conexão com o banco TiDB Cloud estabelecida com sucesso!');
   connection.release();
 });
 
