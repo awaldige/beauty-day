@@ -17,9 +17,17 @@ A aplicação está disponível em ambiente de produção e permite visualizar o
 O Beauty Day possui uma interface moderna e responsiva para gerenciamento de:
 
 - 📅 Agenda de atendimentos
+- <img width="1348" height="630" alt="image" src="https://github.com/user-attachments/assets/93493cf4-57d9-4efd-bf74-03aaed857c57" />
+
 - 👥 Profissionais
+- <img width="1349" height="643" alt="image" src="https://github.com/user-attachments/assets/c121656f-533f-4a4f-a786-28d3af0faa91" />
+
 - 💇 Serviços
+- <img width="1355" height="643" alt="image" src="https://github.com/user-attachments/assets/f4eb03d5-d24e-44f6-a77c-bd4e4f11208e" />
+
 - 📊 Painel de gestão
+- <img width="1364" height="639" alt="image" src="https://github.com/user-attachments/assets/c09c3dd4-6d6d-4903-8002-df6b3f082101" />
+
 
 > 💡 **Dica:** Para uma melhor experiência, acesse a demonstração online pelo navegador em um computador ou dispositivo móvel.
 
