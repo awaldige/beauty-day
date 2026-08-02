@@ -1,21 +1,52 @@
-💇‍♀️ Beauty Day
+# 💇‍♀️ Beauty Day
 
 Sistema de gestão para salões de beleza, desenvolvido para facilitar o controle de agendamentos, profissionais e serviços.
 
 O projeto possui uma arquitetura separada entre Frontend e Backend, organizados no mesmo repositório.
 
-🚀 Funcionalidades
-📅 Gerenciamento de agendamentos
-✅ Concluir atendimentos
-❌ Cancelar agendamentos
-🔄 Reagendar atendimentos
-👥 Cadastro e gerenciamento de profissionais
-💇 Gerenciamento de serviços
-💰 Controle de valores dos serviços
-📊 Painel de gestão
-🔌 API REST para comunicação entre Frontend e Backend
-🗄️ Integração com banco de dados MySQL
-🏗️ Estrutura do Projeto
+## 🌐 Pré-visualização
+
+🚀 **Acesse a aplicação online:**
+
+👉 https://beauty-day-app.vercel.app/
+
+A aplicação está disponível em ambiente de produção e permite visualizar o painel de gestão, consultar agendamentos, profissionais e serviços, além de realizar operações de gerenciamento.
+
+### 🖥️ Demonstração
+
+O Beauty Day possui uma interface moderna e responsiva para gerenciamento de:
+
+- 📅 Agenda de atendimentos
+- 👥 Profissionais
+- 💇 Serviços
+- 📊 Painel de gestão
+
+> 💡 **Dica:** Para uma melhor experiência, acesse a demonstração online pelo navegador em um computador ou dispositivo móvel.
+
+---
+
+## 🚀 Funcionalidades
+
+- 📅 Gerenciamento de agendamentos
+- ✅ Concluir atendimentos
+- ❌ Cancelar agendamentos
+- 🔄 Reagendar atendimentos
+- 👥 Cadastro e gerenciamento de profissionais
+- ✏️ Edição de profissionais
+- 🗑️ Exclusão de profissionais
+- 💇 Gerenciamento de serviços
+- ✏️ Edição de serviços
+- 🗑️ Exclusão de serviços
+- 💰 Controle de valores dos serviços
+- 📊 Painel de gestão
+- 🔌 API REST para comunicação entre Frontend e Backend
+- 🗄️ Integração com banco de dados
+
+---
+
+## 🏗️ Estrutura do Projeto
+
+```text
 beauty-day/
 │
 ├── beauty-day-frontend/
@@ -46,7 +77,17 @@ Tailwind CSS
 React Query
 ESLint
 
-O Frontend é responsável pela interface de gerenciamento do sistema e comunicação com a API.
+O Frontend é responsável pela interface de gerenciamento do sistema e pela comunicação com a API REST.
+
+🚀 Deploy
+
+O Frontend está publicado na:
+
+Vercel
+
+URL de produção:
+
+https://beauty-day-app.vercel.app/
 
 ⚙️ Backend
 
@@ -54,14 +95,23 @@ Desenvolvido com:
 
 Node.js
 Express
-MySQL
-mysql2
+MySQL / mysql2
 CORS
 dotenv
 
 O Backend disponibiliza uma API REST para gerenciamento dos dados do sistema.
 
-Principais endpoints
+🚀 Deploy
+
+O Backend está publicado na:
+
+Render
+
+API de produção:
+
+https://beauty-day-api.onrender.com/
+
+🔌 Principais endpoints
 GET    /api/status
 
 GET    /api/agendamentos
@@ -71,18 +121,37 @@ DELETE /api/agendamentos/:id
 
 GET    /api/profissionais
 POST   /api/profissionais
+PUT    /api/profissionais/:id
+DELETE /api/profissionais/:id
 
 GET    /api/servicos
 POST   /api/servicos
+PUT    /api/servicos/:id
+DELETE /api/servicos/:id
 🗄️ Banco de Dados
 
-O sistema utiliza MySQL para armazenamento dos dados.
+O sistema utiliza banco de dados relacional para armazenamento dos dados.
 
-Durante o desenvolvimento local, o projeto foi configurado para utilizar o banco:
+Ambiente de desenvolvimento
+
+Durante o desenvolvimento local, o projeto foi configurado para utilizar:
+
+MySQL
+XAMPP
+
+Banco utilizado localmente:
 
 beauty day
 
-e a conexão local pode ser configurada através das variáveis de ambiente.
+A conexão local pode ser configurada através das variáveis de ambiente.
+
+Ambiente de produção
+
+Em produção, a aplicação utiliza:
+
+TiDB Cloud
+
+A API publicada no Render se conecta ao banco de dados de produção através das variáveis de ambiente configuradas no serviço.
 
 🔐 Variáveis de Ambiente
 
@@ -91,9 +160,7 @@ O Backend possui um arquivo .env.example como modelo de configuração.
 Crie um arquivo .env dentro de:
 
 beauty-day-backend/
-
-Exemplo:
-
+Exemplo para desenvolvimento local
 PORT=3001
 DB_HOST=127.0.0.1
 DB_PORT=3308
@@ -127,7 +194,7 @@ A API estará disponível em:
 
 http://localhost:3001
 
-Para verificar o status:
+Para verificar o status da API:
 
 http://localhost:3001/api/status
 3. Executar o Frontend
@@ -153,17 +220,18 @@ O sistema estará disponível em:
 http://localhost:3000
 🔗 Comunicação entre Frontend e Backend
 
-O Frontend utiliza a variável:
+O Frontend utiliza a variável de ambiente:
 
 NEXT_PUBLIC_API_URL
 
 para definir o endereço da API.
 
-Em ambiente local:
-
+Ambiente local
 NEXT_PUBLIC_API_URL=http://localhost:3001/api
+Ambiente de produção
+NEXT_PUBLIC_API_URL=https://beauty-day-api.onrender.com/api
 
-Em produção, essa variável deverá apontar para a URL pública do Backend.
+A aplicação em produção está hospedada na Vercel e utiliza a API publicada no Render.
 
 🛠️ Tecnologias
 Camada	Tecnologias
@@ -171,24 +239,33 @@ Frontend	Next.js, React, TypeScript
 Estilização	Tailwind CSS
 Gerenciamento de dados	React Query
 Backend	Node.js, Express
-Banco de dados	MySQL
+Banco local	MySQL
+Banco de produção	TiDB Cloud
 API	REST
+Deploy Frontend	Vercel
+Deploy Backend	Render
 Controle de versão	Git e GitHub
 📌 Status do Projeto
 
-🚧 Em desenvolvimento
+🟢 Em produção
 
-O projeto está em evolução e novas funcionalidades e melhorias de interface serão adicionadas futuramente.
+O Beauty Day está disponível online para demonstração.
 
-👨‍💻 Autor
+Novas funcionalidades, melhorias de interface e evoluções técnicas poderão ser adicionadas futuramente.
 
-André Waldige
+## 🏢 Desenvolvido por
 
-Desenvolvedor Full Stack
+**AW TECHNOLOGY**
 
-GitHub: https://github.com/awaldige
-LinkedIn: https://www.linkedin.com/in/andre-waldige-dev
-Portfólio: https://andre-waldige.vercel.app/
-📄 Licença
+Soluções inteligentes em software para negócios.
+
+Desenvolvido por **André Waldige — Desenvolvedor Full Stack**
+
+- 🌐 Portfólio: https://andre-waldige.vercel.app/
+- 💻 GitHub: https://github.com/awaldige
+- 💼 LinkedIn: https://www.linkedin.com/in/andre-waldige-dev
+- 📱 Instagram: https://www.instagram.com/awtechnologybr/
+
+ 📄 Licença
 
 Este projeto foi desenvolvido para fins de estudo, portfólio e demonstração de habilidades em desenvolvimento Full Stack.
