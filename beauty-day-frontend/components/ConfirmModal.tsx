@@ -42,6 +42,18 @@ export function ConfirmModal({
     setMounted(true);
   }, []);
 
+  // Bloqueia o scroll da página de fundo quando o modal está aberto no mobile/desktop
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   // Limpa os estados ao fechar/abrir o modal
   useEffect(() => {
     if (!isOpen) {
@@ -69,7 +81,6 @@ export function ConfirmModal({
     : true;
 
   const isReasonValid = requireReason ? reason.trim().length > 0 : true;
-
   const isConfirmDisabled = isLoading || !isTypeValid || !isReasonValid;
 
   const variantStyles = {
@@ -106,8 +117,9 @@ export function ConfirmModal({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1rem'
+        padding: '0.75rem',
       }}
+      className="touch-manipulation"
     >
       {/* Backdrop */}
       <div 
@@ -131,23 +143,21 @@ export function ConfirmModal({
           zIndex: 10,
           width: '100%',
           maxWidth: '28rem',
-          backgroundColor: 'rgba(255, 255, 255, 0.94)',
+          backgroundColor: 'rgba(255, 255, 255, 0.96)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
-          borderRadius: '1.5rem',
           border: '1px solid rgba(255, 255, 255, 0.8)',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
-          padding: '1.5rem',
         }}
-        className="space-y-5"
+        className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl space-y-4 sm:space-y-5 max-h-[90vh] overflow-y-auto"
       >
         {/* Cabeçalho */}
-        <div className="flex items-start gap-4">
-          <div className={`h-12 w-12 rounded-2xl ${currentVariant.bgIcon} flex items-center justify-center text-xl shrink-0 shadow-sm`}>
+        <div className="flex items-start gap-3.5 sm:gap-4">
+          <div className={`h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl ${currentVariant.bgIcon} flex items-center justify-center text-lg sm:text-xl shrink-0 shadow-sm`}>
             {currentVariant.icon}
           </div>
-          <div className="space-y-1">
-            <h3 className="text-base font-black text-[#1a0933]">
+          <div className="space-y-0.5 sm:space-y-1">
+            <h3 className="text-sm sm:text-base font-black text-[#1a0933]">
               {title}
             </h3>
             <p className="text-xs text-slate-700 font-semibold leading-relaxed">
@@ -159,7 +169,7 @@ export function ConfirmModal({
         {/* Entrada opcional de texto para motivo */}
         {requireReason && (
           <div className="space-y-1 pt-1">
-            <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">
+            <label className="text-[10px] sm:text-[11px] font-bold text-slate-600 uppercase tracking-wider">
               Motivo do cancelamento / observação
             </label>
             <textarea
@@ -168,7 +178,7 @@ export function ConfirmModal({
               onChange={(e) => setReason(e.target.value)}
               placeholder={reasonPlaceholder}
               disabled={isLoading}
-              className="w-full text-xs p-3 rounded-xl border border-slate-200 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-violet-500/50 resize-none font-medium text-slate-800 placeholder:text-slate-400"
+              className="w-full text-xs p-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-violet-500/50 resize-none font-medium text-slate-800 placeholder:text-slate-400"
             />
           </div>
         )}
@@ -176,7 +186,7 @@ export function ConfirmModal({
         {/* Confirmação por digitação */}
         {confirmTextToType && (
           <div className="space-y-1 pt-1">
-            <label className="text-[11px] font-bold text-slate-600">
+            <label className="text-[10px] sm:text-[11px] font-bold text-slate-600">
               Digite <span className="font-black text-rose-600">{confirmTextToType}</span> para confirmar:
             </label>
             <input
@@ -185,18 +195,18 @@ export function ConfirmModal({
               onChange={(e) => setTypedText(e.target.value)}
               placeholder={confirmTextToType}
               disabled={isLoading}
-              className="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 font-bold text-slate-800"
+              className="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 font-bold text-slate-800"
             />
           </div>
         )}
 
-        {/* Botões de Ação */}
-        <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200/80">
+        {/* Botões de Ação (Empilhados no mobile, lado a lado no desktop) */}
+        <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-2.5 sm:gap-3 pt-3 border-t border-slate-200/80">
           <button
             type="button"
             onClick={onCancel}
             disabled={isLoading}
-            className="h-11 px-5 text-xs font-black text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all uppercase tracking-wider disabled:opacity-50 cursor-pointer"
+            className="w-full sm:w-auto h-11 px-5 text-xs font-black text-slate-700 bg-slate-100 hover:bg-slate-200 active:scale-[0.98] rounded-xl transition-all uppercase tracking-wider disabled:opacity-50 cursor-pointer flex items-center justify-center"
           >
             {cancelText}
           </button>
@@ -205,7 +215,7 @@ export function ConfirmModal({
             type="button"
             onClick={() => onConfirm(requireReason ? reason : undefined)}
             disabled={isConfirmDisabled}
-            className={`h-11 px-6 text-xs font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-wider flex items-center gap-2 cursor-pointer ${currentVariant.btnConfirm} disabled:opacity-40 disabled:cursor-not-allowed`}
+            className={`w-full sm:w-auto h-11 px-6 text-xs font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer ${currentVariant.btnConfirm} disabled:opacity-40 disabled:cursor-not-allowed`}
           >
             {isLoading ? 'Aguarde...' : confirmText}
           </button>
