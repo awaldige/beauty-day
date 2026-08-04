@@ -6,7 +6,7 @@ import { api } from '@/services/api';
 import { Agenda } from '@/components/Agenda';
 import { Equipe } from '@/components/Equipe';
 import { Servicos } from '@/components/Servicos';
-import Dashboard from '@/components/dashboard';
+import Dashboard from '@/components/Dashboard';
 
 export function PainelExecutivo() {
   // 1. Estado inicial padrão focado na agenda (incluído 'dashboard')
