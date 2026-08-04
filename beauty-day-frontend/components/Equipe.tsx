@@ -186,19 +186,19 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
   const estaCarregando = mutationCriar.isPending || mutationEditar.isPending;
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-6 sm:space-y-10">
       
       {/* SEÇÃO 1: FORMULÁRIO DE CADASTRO/EDIÇÃO */}
-      <div className="relative overflow-hidden bg-white/80 backdrop-blur-xl rounded-3xl border border-violet-200/90 shadow-[0_20px_50px_rgba(109,40,217,0.06)] transition-all">
+      <div className="relative overflow-hidden bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-violet-200/90 shadow-[0_20px_50px_rgba(109,40,217,0.06)] transition-all">
         <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-violet-600 via-fuchsia-500 to-indigo-600" />
         
-        <div className="px-8 py-5 border-b border-violet-200/50 flex items-center justify-between bg-gradient-to-r from-violet-50/70 via-fuchsia-50/30 to-transparent">
+        <div className="px-4 py-4 sm:px-8 sm:py-5 border-b border-violet-200/50 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-r from-violet-50/70 via-fuchsia-50/30 to-transparent">
           <div>
-            <h2 className="text-base font-black tracking-tight text-[#1a0933] flex items-center gap-2">
-              <span className="p-2 bg-violet-100 rounded-xl text-lg">{idEditando ? '✏️' : '👤'}</span> 
-              {idEditando ? 'Editar Membro da Equipe' : 'Cadastrar Novo Especialista'}
+            <h2 className="text-sm sm:text-base font-black tracking-tight text-[#1a0933] flex items-center gap-2">
+              <span className="p-1.5 sm:p-2 bg-violet-100 rounded-lg sm:rounded-xl text-base sm:text-lg">{idEditando ? '✏️' : '👤'}</span> 
+              {idEditando ? 'Editar Membro' : 'Novo Especialista'}
             </h2>
-            <p className="text-xs text-violet-800/80 font-medium mt-1">
+            <p className="text-[11px] sm:text-xs text-violet-800/80 font-medium mt-0.5 sm:mt-1">
               {idEditando ? 'Atualize as informações do profissional selecionado.' : 'Adicione talentos ao seu time para liberar horários na agenda.'}
             </p>
           </div>
@@ -207,15 +207,15 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
             <button 
               type="button"
               onClick={resetarFormulario}
-              className="text-[10px] font-black uppercase tracking-widest text-rose-600 hover:bg-rose-100/70 bg-rose-50 px-3.5 py-2 rounded-xl border border-rose-200 transition-all cursor-pointer shadow-sm"
+              className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-rose-600 hover:bg-rose-100/70 bg-rose-50 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl border border-rose-200 transition-all cursor-pointer shadow-sm ml-auto"
             >
-              Cancel Edit
+              Cancelar Edição
             </button>
           )}
         </div>
 
-        <form onSubmit={handleSubmeter} className="p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-          <div className="space-y-2 md:col-span-1">
+        <form onSubmit={handleSubmeter} className="p-4 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 items-end">
+          <div className="space-y-1.5 sm:space-y-2 md:col-span-1">
             <label className="block text-[10px] font-black text-violet-950 uppercase tracking-widest pl-1">
               Nome do Profissional
             </label>
@@ -226,11 +226,11 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
               required
               disabled={estaCarregando}
               placeholder="Ex: Amanda Silva"
-              className="w-full h-13 px-4 text-sm font-bold border-2 border-violet-100 rounded-2xl bg-white/90 text-[#1a0933] placeholder-violet-300 focus:outline-none focus:border-violet-600 focus:ring-4 focus:ring-violet-500/10 transition-all shadow-inner disabled:opacity-50"
+              className="w-full h-12 sm:h-13 px-3.5 sm:px-4 text-xs sm:text-sm font-bold border-2 border-violet-100 rounded-xl sm:rounded-2xl bg-white/90 text-[#1a0933] placeholder-violet-300 focus:outline-none focus:border-violet-600 focus:ring-4 focus:ring-violet-500/10 transition-all shadow-inner disabled:opacity-50"
             />
           </div>
           
-          <div className="space-y-2">
+          <div className="space-y-1.5 sm:space-y-2">
             <label className="block text-[10px] font-black text-violet-950 uppercase tracking-widest pl-1">
               Especialidade / Cargo
             </label>
@@ -238,7 +238,7 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
               value={cargo} 
               onChange={(e) => setCargo(e.target.value as CargoProfissional)}
               disabled={estaCarregando}
-              className="w-full h-13 px-4 text-sm font-bold border-2 border-violet-100 rounded-2xl bg-white/90 text-[#1a0933] focus:outline-none focus:border-violet-600 focus:ring-4 focus:ring-violet-500/10 transition-all cursor-pointer shadow-inner appearance-none disabled:opacity-50"
+              className="w-full h-12 sm:h-13 px-3.5 sm:px-4 text-xs sm:text-sm font-bold border-2 border-violet-100 rounded-xl sm:rounded-2xl bg-white/90 text-[#1a0933] focus:outline-none focus:border-violet-600 focus:ring-4 focus:ring-violet-500/10 transition-all cursor-pointer shadow-inner appearance-none disabled:opacity-50"
               style={{ backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236d28d9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center', backgroundSize: '16px' }}
             >
               <option value="cabeleireiro">✂️ Cabeleireiro(a)</option>
@@ -248,11 +248,11 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
             </select>
           </div>
 
-          <div>
+          <div className="pt-2 md:pt-0">
             <button 
               type="submit" 
               disabled={estaCarregando}
-              className="w-full h-13 bg-gradient-to-r from-violet-600 via-indigo-600 to-fuchsia-600 hover:opacity-95 hover:scale-[1.01] text-white text-xs font-black rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98] uppercase tracking-widest flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+              className="w-full h-12 sm:h-13 bg-gradient-to-r from-violet-600 via-indigo-600 to-fuchsia-600 hover:opacity-95 hover:scale-[1.01] text-white text-xs font-black rounded-xl sm:rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-[0.98] uppercase tracking-widest flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
             >
               {estaCarregando ? (
                 <>
@@ -268,35 +268,35 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
         </form>
       </div>
 
-      {/* DIVISOR DE SEÇÃO RICA */}
-      <div className="flex items-center justify-between gap-4 pt-2">
-        <div className="flex items-center gap-3">
-          <div className="h-9 px-4 rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white flex items-center justify-center font-black text-xs shadow-md shadow-violet-500/20 uppercase tracking-widest gap-2">
-            <span>✨</span> Time de Especialistas
+      {/* DIVISOR DE SEÇÃO */}
+      <div className="flex items-center justify-between gap-3 pt-1">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="h-8 sm:h-9 px-3.5 sm:px-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white flex items-center justify-center font-black text-[10px] sm:text-xs shadow-md shadow-violet-500/20 uppercase tracking-widest gap-1.5 sm:gap-2">
+            <span>✨</span> Equipe Ativa
           </div>
-          <span className="text-xs font-black text-violet-900 bg-white/80 px-3 py-1.5 rounded-xl border border-violet-200/80 shadow-sm">
+          <span className="text-[11px] sm:text-xs font-black text-violet-900 bg-white/80 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl border border-violet-200/80 shadow-sm">
             {listaAtivos.length} {listaAtivos.length === 1 ? 'membro' : 'membros'}
           </span>
         </div>
         <div className="h-[2px] bg-gradient-to-r from-violet-300/80 via-fuchsia-200/50 to-transparent flex-1 rounded-full hidden sm:block" />
       </div>
 
-      {/* SEÇÃO 2: GRID DE CARDS PREMIUM */}
+      {/* SEÇÃO 2: GRID DE CARDS */}
       {listaAtivos.length === 0 ? (
         /* Empty State */
-        <div className="p-16 text-center bg-white/60 backdrop-blur-md rounded-3xl border-2 border-dashed border-violet-200/80 space-y-4 shadow-sm">
-          <div className="h-16 w-16 bg-violet-100 text-violet-600 rounded-3xl flex items-center justify-center text-3xl mx-auto shadow-inner">
+        <div className="p-8 sm:p-16 text-center bg-white/60 backdrop-blur-md rounded-2xl sm:rounded-3xl border-2 border-dashed border-violet-200/80 space-y-3 sm:space-y-4 shadow-sm">
+          <div className="h-12 w-12 sm:h-16 sm:w-16 bg-violet-100 text-violet-600 rounded-2xl sm:rounded-3xl flex items-center justify-center text-2xl sm:text-3xl mx-auto shadow-inner">
             💈
           </div>
           <div className="space-y-1">
-            <h3 className="text-base font-black text-[#1a0933]">Nenhum especialista listado</h3>
+            <h3 className="text-sm sm:text-base font-black text-[#1a0933]">Nenhum especialista listado</h3>
             <p className="text-xs text-violet-800/70 max-w-sm mx-auto font-medium">
               Utilize o formulário acima para adicionar os profissionais e montar sua equipe.
             </p>
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {listaAtivos.map((p: any) => {
             const idItem = extrairIdSeguro(p);
             const nomeExibicao = p.nome || p.nome_profissional || 'Profissional';
@@ -313,41 +313,39 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
             return (
               <div 
                 key={idItem || Math.random().toString()} 
-                className={`group relative p-6 rounded-3xl bg-white/80 backdrop-blur-xl border transition-all duration-300 flex flex-col justify-between overflow-hidden ${
+                className={`group relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/80 backdrop-blur-xl border transition-all duration-300 flex flex-col justify-between overflow-hidden ${
                   isEditingThis 
                     ? 'border-fuchsia-500 shadow-[0_20px_40px_rgba(217,70,239,0.18)] ring-2 ring-fuchsia-400/40 bg-fuchsia-50/20' 
                     : 'border-violet-200/80 hover:border-violet-400 hover:shadow-[0_20px_45px_rgba(109,40,217,0.12)] hover:-translate-y-1'
                 }`}
               >
-                {/* Linha Decorativa Luminosa Superior no Hover */}
+                {/* Linha Decorativa Superior no Hover */}
                 <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-violet-600 via-fuchsia-500 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                {/* Efeito Glow de Fundo */}
+                {/* Glow de Fundo */}
                 <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-violet-400/10 rounded-full blur-2xl group-hover:bg-fuchsia-400/20 transition-all duration-500 pointer-events-none" />
 
-                <div className="space-y-5 relative z-10">
-                  {/* Cabeçalho do Card: Avatar + Status */}
+                <div className="space-y-4 sm:space-y-5 relative z-10">
+                  {/* Cabeçalho do Card */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-4">
-                      {/* Avatar Premium com Iniciais e Glow */}
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      {/* Avatar Premium */}
                       <div className="relative">
-                        <div className={`h-14 w-14 rounded-2xl bg-gradient-to-br ${configCargo.iconeBg} text-white flex items-center justify-center font-black text-sm uppercase shadow-md shadow-violet-600/20 group-hover:scale-105 transition-transform duration-300 shrink-0`}>
+                        <div className={`h-12 w-12 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-gradient-to-br ${configCargo.iconeBg} text-white flex items-center justify-center font-black text-xs sm:text-sm uppercase shadow-md shadow-violet-600/20 group-hover:scale-105 transition-transform duration-300 shrink-0`}>
                           {iniciais}
                         </div>
-                        {/* Dot Indicador de Status Ativo */}
-                        <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-emerald-500 border-2 border-white shadow-sm flex items-center justify-center">
-                          <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                        <span className="absolute -bottom-1 -right-1 h-3.5 w-3.5 sm:h-4 sm:w-4 rounded-full bg-emerald-500 border-2 border-white shadow-sm flex items-center justify-center">
+                          <span className="h-1 sm:h-1.5 w-1 sm:w-1.5 rounded-full bg-white animate-pulse" />
                         </span>
                       </div>
 
                       {/* Nome & Cargo */}
                       <div className="space-y-1">
-                        <h4 className="font-black text-[#1a0933] text-base tracking-tight leading-snug group-hover:text-violet-700 transition-colors line-clamp-1">
+                        <h4 className="font-black text-[#1a0933] text-sm sm:text-base tracking-tight leading-snug group-hover:text-violet-700 transition-colors line-clamp-1">
                           {nomeExibicao}
                         </h4>
                         
-                        {/* Tag de Cargo Rôbusta */}
-                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-wider border shadow-sm ${configCargo.classe}`}>
+                        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-wider border shadow-sm ${configCargo.classe}`}>
                           <span>{configCargo.emoji}</span>
                           {configCargo.label}
                         </span>
@@ -357,17 +355,17 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
                 </div>
 
                 {/* Rodapé e Botões de Ação */}
-                <div className="mt-6 pt-4 border-t border-violet-100/80 flex items-center justify-between gap-2 relative z-10">
-                  <div className="text-[10px] font-bold text-violet-800/60 uppercase tracking-widest flex items-center gap-1">
+                <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-violet-100/80 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-2 relative z-10">
+                  <div className="text-[9px] sm:text-[10px] font-bold text-violet-800/60 uppercase tracking-widest flex items-center gap-1">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 inline-block"></span>
                     Ativo no sistema
                   </div>
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5 justify-end">
                     <button
                       type="button"
                       onClick={() => handleIniciarEdicao(p)}
-                      className="px-3 py-1.5 text-xs font-black text-violet-700 hover:bg-violet-100/80 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
+                      className="flex-1 xs:flex-none px-3 py-1.5 text-xs font-black text-violet-700 bg-violet-50 hover:bg-violet-100/80 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer active:scale-95"
                       title="Editar informações"
                     >
                       <span>✏️</span> Editar
@@ -377,7 +375,7 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
                       type="button"
                       onClick={() => abrirModalExclusao(p)}
                       disabled={mutationExcluir.isPending}
-                      className="px-3 py-1.5 text-xs font-black text-rose-600 hover:bg-rose-100/70 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer active:scale-95 disabled:opacity-40"
+                      className="flex-1 xs:flex-none px-3 py-1.5 text-xs font-black text-rose-600 bg-rose-50 hover:bg-rose-100/70 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer active:scale-95 disabled:opacity-40"
                       title="Inativar profissional"
                     >
                       <span>🗑️</span> Remover
@@ -390,7 +388,7 @@ export function Equipe({ profissionais = [] }: EquipeProps) {
         </div>
       )}
 
-      {/* Modal Translúcido para Inativação de Profissional */}
+      {/* Modal para Inativação de Profissional */}
       <ConfirmModal
         isOpen={modalExcluir.isOpen}
         title="Remover da Equipe"
