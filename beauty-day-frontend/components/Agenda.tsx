@@ -803,9 +803,9 @@ export function Agenda({ agendamentos = [], profissionais = [], servicos = [] }:
         <ConfirmModal 
           isOpen={!!idParaCancelar}
           title="Cancelar Agendamento"
-          message="Tem certeza de que deseja cancelar este agendamento?"
+          description="Tem certeza de que deseja cancelar este agendamento?"
           onConfirm={() => mutationCancelar.mutate(idParaCancelar)}
-          onClose={() => setIdParaCancelar(null)}
+          onCancel={() => setIdParaCancelar(null)}
         />
       )}
 
@@ -813,9 +813,9 @@ export function Agenda({ agendamentos = [], profissionais = [], servicos = [] }:
         <ConfirmModal 
           isOpen={!!idParaConcluir}
           title="Concluir Atendimento"
-          message="Marcar este atendimento como concluído?"
+          description="Marcar este atendimento como concluído?"
           onConfirm={() => mutationConcluir.mutate(idParaConcluir)}
-          onClose={() => setIdParaConcluir(null)}
+          onCancel={() => setIdParaConcluir(null)}
         />
       )}
     </div>
