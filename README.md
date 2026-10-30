@@ -28,7 +28,8 @@ O Beauty Day possui uma interface moderna e responsiva para gerenciamento de:
 
 
 - 📊 Painel de gestão
-- <img width="1364" height="639" alt="image" src="https://github.com/user-attachments/assets/c09c3dd4-6d6d-4903-8002-df6b3f082101" />
+<img width="1363" height="768" alt="dasboard" src="https://github.com/user-attachments/assets/00155f2a-05bc-4867-af09-fae254575fc1" />
+
 
 
 > 💡 **Dica:** Para uma melhor experiência, acesse a demonstração online pelo navegador em um computador ou dispositivo móvel.
