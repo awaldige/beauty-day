@@ -20,7 +20,8 @@ O Beauty Day possui uma interface moderna e responsiva para gerenciamento de:
 - <img width="1348" height="630" alt="image" src="https://github.com/user-attachments/assets/93493cf4-57d9-4efd-bf74-03aaed857c57" />
 
 - 👥 Profissionais
-- <img width="1349" height="643" alt="image" src="https://github.com/user-attachments/assets/c121656f-533f-4a4f-a786-28d3af0faa91" />
+<img width="1355" height="764" alt="proffissionais" src="https://github.com/user-attachments/assets/903ad888-1a4e-4c69-bd6e-d93aa4615842" />
+
 
 - 💇 Serviços
 - <img width="1355" height="643" alt="image" src="https://github.com/user-attachments/assets/f4eb03d5-d24e-44f6-a77c-bd4e4f11208e" />
