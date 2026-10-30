@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌸 Beauty Day
 
-## Getting Started
+### Sistema de Gestão para Salões de Beleza
 
-First, run the development server:
+**Desenvolvido por AW TECHNOLOGY**
+
+O **Beauty Day** é uma aplicação web desenvolvida para auxiliar na organização da rotina de salões de beleza, oferecendo uma interface intuitiva para acompanhar agendamentos, visualizar indicadores de desempenho e analisar os resultados do negócio.
+
+O projeto combina uma interface moderna com recursos de gestão, proporcionando uma visão organizada das atividades e dos serviços realizados.
+
+---
+
+## ✨ Funcionalidades
+
+### 📊 Dashboard
+
+- Indicadores para acompanhamento do desempenho.
+- Resumo dos agendamentos e das atividades.
+- Ranking de serviços.
+- Gráfico de faturamento baseado nos agendamentos concluídos.
+- Filtros por período: hoje, últimos 7 dias, mês atual, mês específico e todo o período.
+- Seleção de mês e ano para análise histórica.
+- Atualização dos indicadores e do gráfico conforme o período selecionado.
+
+### 📅 Agenda
+
+- Visualização e organização dos agendamentos.
+- Acompanhamento dos compromissos.
+- Interface voltada à gestão da rotina do salão.
+
+### 🎨 Interface
+
+- Design moderno e organizado.
+- Componentes reutilizáveis.
+- Estilização com CSS.
+- Estrutura desenvolvida com Next.js e React.
+
+---
+
+## 🛠️ Tecnologias
+
+- **Next.js** — framework React.
+- **React** — construção da interface.
+- **TypeScript** — tipagem estática e maior segurança no desenvolvimento.
+- **CSS** — estilização da aplicação.
+
+---
+
+## 🚀 Executar localmente
+
+### Pré-requisitos
+
+- Node.js instalado.
+- npm instalado.
+- Git instalado, caso deseje clonar o repositório.
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/awaldige/beauty-day.git
+```
+
+### 2. Acessar a pasta do frontend
+
+```bash
+cd beauty-day/beauty-day-frontend
+```
+
+### 3. Instalar as dependências
+
+```bash
+npm install
+```
+
+### 4. Iniciar o ambiente de desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 5. Abrir no navegador
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Acesse:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📈 Análise de desempenho
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O dashboard permite consultar os indicadores por diferentes períodos, incluindo a seleção de um mês e ano específicos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Essa funcionalidade facilita a análise histórica dos resultados e permite comparar os dados de diferentes períodos, conforme os agendamentos registrados na aplicação.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👨‍💻 Desenvolvido por
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**AW TECHNOLOGY**
+
+Desenvolvimento de aplicações web com foco em interfaces modernas, organização de processos e soluções digitais personalizadas.
+
+🔗 GitHub: https://github.com/awaldige
+
+---
+
+*Beauty Day — Tecnologia e organização para a gestão da beleza.*
