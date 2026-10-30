@@ -20,15 +20,15 @@ export interface Servico {
 export type StatusAgendamento = 'confirmado' | 'pendente' | 'cancelado' | 'concluido';
 
 export interface Agendamento {
-  id: string;
-  profissional_id: string;
-  profissional_nome?: string;
-  servico_id: string;
-  servico_nome?: string;
-  data_hora_inicio: string;
-  valor_cobrado: number;
-  status: StatusAgendamento;
-  updated_at?: string;
+id: string;
+profissional_id: string;
+profissional_nome?: string;
+servico_id: string;
+servico_nome?: string;
+data_hora_inicio: string;
+valor_cobrado: number;
+status: StatusAgendamento;
+updated_at?: string;
 }
 
 export type CriarAgendamentoDTO = Omit<Agendamento, 'id' | 'profissional_nome' | 'servico_nome'>;

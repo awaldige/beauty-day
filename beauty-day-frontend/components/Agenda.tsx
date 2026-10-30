@@ -229,7 +229,7 @@ export function Agenda({ agendamentos = [], profissionais = [], servicos = [] }:
   const agendamentosPaginados = agendamentosOrdenados.slice(indiceInicial, indiceInicial + itensPorPagina);
 
   const selectStyle = {
-    backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236d28d9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
+    backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23b76e79' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'right 14px center',
     backgroundSize: '16px'
@@ -262,106 +262,212 @@ export function Agenda({ agendamentos = [], profissionais = [], servicos = [] }:
           </div>
         </div>
 
-        <form onSubmit={handleSubmeter} className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6 items-end">
-          
-          <div className="space-y-1.5">
-            <label className="block text-[10px] font-black text-violet-900 uppercase tracking-widest pl-1">
-              👥 Profissional
-            </label>
-            <select 
-              value={profissionalId} 
-              onChange={(e) => setProfissionalId(e.target.value)} 
-              required
-              style={selectStyle}
-              className="w-full h-12 md:h-14 px-3.5 md:px-4 text-xs md:text-sm font-bold border-2 border-violet-100 rounded-xl md:rounded-2xl bg-white text-[#1a0933] focus:outline-none focus:border-violet-500 transition-all cursor-pointer appearance-none"
-            >
-              <option value="">Selecione o profissional...</option>
-              {profissionais.map(p => (
-                <option key={String(p.id)} value={String(p.id)}>
-                  {p.nome} ({p.cargo})
-                </option>
-              ))}
-            </select>
-          </div>
+        <form
+  onSubmit={handleSubmeter}
+  className="grid grid-cols-1 gap-5 p-5 sm:grid-cols-2 md:p-8 xl:grid-cols-6"
+>
+  {/* PROFISSIONAL */}
+  <div className="space-y-2 xl:col-span-2">
+    <label
+      htmlFor="profissional"
+      className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#694955]"
+    >
+      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#f8e9ed] text-sm">
+        👤
+      </span>
+      Profissional
+      <span className="text-rose-500">*</span>
+    </label>
 
-          <div className="space-y-1.5">
-            <label className="block text-[10px] font-black text-violet-900 uppercase tracking-widest pl-1">
-              ✂️ Serviço Compatível
-            </label>
-            <select 
-              value={servicoId} 
-              onChange={(e) => handleServicoChange(e.target.value)} 
-              required
-              disabled={!profissionalId}
-              style={selectStyle}
-              className="w-full h-12 md:h-14 px-3.5 md:px-4 text-xs md:text-sm font-bold border-2 border-violet-100 rounded-xl md:rounded-2xl bg-white text-[#1a0933] focus:outline-none focus:border-violet-500 transition-all cursor-pointer appearance-none disabled:bg-gray-100/80 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              <option value="">
-                {!profissionalId ? 'Escolha o profissional primeiro...' : 'Selecione o serviço...'}
-              </option>
-              {servicosFiltrados.map(s => {
-                const precoItem = s.preco ?? (s as any).valor ?? (s as any).preco_base ?? 0;
-                return (
-                  <option key={String(s.id)} value={String(s.id)}>
-                    {s.nome || (s as any).nome_servico} (R$ {Number(precoItem).toFixed(2)})
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+    <select
+      id="profissional"
+      value={profissionalId}
+      onChange={(e) => setProfissionalId(e.target.value)}
+      required
+      style={selectStyle}
+      className="h-12 w-full appearance-none rounded-xl border border-[#ead7dd] bg-white px-4 pr-10 text-sm font-medium text-[#49343d] shadow-sm transition-all hover:border-[#c994a2] focus:border-[#b76e79] focus:outline-none focus:ring-4 focus:ring-[#b76e79]/10"
+    >
+      <option value="">Selecione um profissional</option>
 
-          <div className="space-y-1.5">
-            <label className="block text-[10px] font-black text-violet-900 uppercase tracking-widest pl-1">
-              ⏱️ Data & Hora
-            </label>
-            <input 
-              type="datetime-local" 
-              value={dataHora} 
-              onChange={(e) => setDataHora(e.target.value)} 
-              required
-              className={`w-full h-12 md:h-14 px-3.5 md:px-4 text-xs md:text-sm font-bold border-2 rounded-xl md:rounded-2xl bg-white text-[#1a0933] focus:outline-none transition-all cursor-pointer appearance-none ${
-                conflitoAgendamento 
-                  ? 'border-rose-400 bg-rose-50/30 text-rose-900 focus:border-rose-500' 
-                  : 'border-violet-100 focus:border-violet-500'
-              }`}
-            />
-          </div>
+      {profissionais.map((p) => (
+        <option key={String(p.id)} value={String(p.id)}>
+          {p.nome} — {p.cargo}
+        </option>
+      ))}
+    </select>
 
-          <div className="space-y-1.5">
-            <label className="block text-[10px] font-black text-violet-900 uppercase tracking-widest pl-1">
-              💰 Valor Cobrado
-            </label>
-            <div className="relative flex items-center rounded-xl md:rounded-2xl border-2 border-violet-100 bg-white focus-within:border-violet-500 transition-all overflow-hidden">
-              <div className="flex items-center justify-center bg-violet-50 text-violet-700 font-black text-xs px-3.5 md:px-5 h-12 md:h-14 border-r-2 border-violet-100 select-none shrink-0">
-                R$
-              </div>
-              <input 
-                type="number" 
-                step="0.01" 
-                value={valor} 
-                onChange={(e) => setValor(e.target.value)} 
-                required 
-                placeholder="0,00"
-                className="w-full h-12 md:h-14 px-3 bg-transparent text-xs md:text-sm font-black text-[#1a0933] focus:outline-none appearance-none antialiased"
-              />
-            </div>
-          </div>
+    <p className="text-xs leading-relaxed text-[#8d7b82]">
+      Escolha quem realizará o atendimento.
+    </p>
+  </div>
 
-          <div className="sm:col-span-2 lg:col-span-1 pt-2 lg:pt-0">
-            <button 
-              type="submit" 
-              disabled={mutationCriar.isPending || !!conflitoAgendamento}
-              className={`w-full h-12 md:h-14 text-xs font-black rounded-xl md:rounded-2xl shadow-lg transition-all active:scale-[0.98] uppercase tracking-widest flex items-center justify-center gap-2 ${
-                conflitoAgendamento
-                  ? 'bg-rose-500 text-white cursor-not-allowed opacity-80 shadow-rose-500/10'
-                  : 'bg-gradient-to-r from-violet-600 via-indigo-600 to-fuchsia-600 hover:opacity-95 text-white shadow-indigo-600/20 disabled:opacity-60'
-              }`}
-            >
-              {mutationCriar.isPending ? 'Agendando...' : conflitoAgendamento ? '⚠️ Conflito' : '🚀 Confirmar'}
-            </button>
-          </div>
-        </form>
+  {/* SERVIÇO */}
+  <div className="space-y-2 xl:col-span-2">
+    <label
+      htmlFor="servico"
+      className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#694955]"
+    >
+      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#f8e9ed] text-sm">
+        ✂️
+      </span>
+      Serviço
+      <span className="text-rose-500">*</span>
+    </label>
 
+    <select
+      id="servico"
+      value={servicoId}
+      onChange={(e) => handleServicoChange(e.target.value)}
+      required
+      disabled={!profissionalId}
+      style={selectStyle}
+      className="h-12 w-full appearance-none rounded-xl border border-[#ead7dd] bg-white px-4 pr-10 text-sm font-medium text-[#49343d] shadow-sm transition-all hover:border-[#c994a2] focus:border-[#b76e79] focus:outline-none focus:ring-4 focus:ring-[#b76e79]/10 disabled:cursor-not-allowed disabled:bg-[#f7f3f4] disabled:text-[#a99ba0] disabled:shadow-none"
+    >
+      <option value="">
+        {!profissionalId
+          ? "Selecione primeiro o profissional"
+          : servicosFiltrados.length === 0
+            ? "Nenhum serviço compatível encontrado"
+            : "Selecione o serviço desejado"}
+      </option>
+
+      {servicosFiltrados.map((s) => {
+        const precoItem =
+          s.preco ??
+          (s as any).valor ??
+          (s as any).preco_base ??
+          0;
+
+        const nomeServico =
+          s.nome || (s as any).nome_servico;
+
+        return (
+          <option key={String(s.id)} value={String(s.id)}>
+            {nomeServico} — R${" "}
+            {Number(precoItem).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </option>
+        );
+      })}
+    </select>
+
+    <p className="text-xs leading-relaxed text-[#8d7b82]">
+      {profissionalId
+        ? "Selecione um dos serviços disponíveis."
+        : "Os serviços serão exibidos após a escolha do profissional."}
+    </p>
+  </div>
+
+  {/* DATA E HORA */}
+  <div className="space-y-2 xl:col-span-2">
+    <label
+      htmlFor="dataHora"
+      className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#694955]"
+    >
+      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#f8e9ed] text-sm">
+        📅
+      </span>
+      Data e horário
+      <span className="text-rose-500">*</span>
+    </label>
+
+    <input
+      id="dataHora"
+      type="datetime-local"
+      value={dataHora}
+      onChange={(e) => setDataHora(e.target.value)}
+      required
+      aria-invalid={!!conflitoAgendamento}
+      className={`h-12 w-full rounded-xl border bg-white px-3 text-sm font-medium text-[#49343d] shadow-sm transition-all focus:outline-none focus:ring-4 ${
+        conflitoAgendamento
+          ? "border-rose-400 bg-rose-50 focus:border-rose-500 focus:ring-rose-100"
+          : "border-[#ead7dd] hover:border-[#c994a2] focus:border-[#b76e79] focus:ring-[#b76e79]/10"
+      }`}
+    />
+
+    <p
+      className={`text-xs leading-relaxed ${
+        conflitoAgendamento ? "font-semibold text-rose-600" : "text-[#8d7b82]"
+      }`}
+    >
+      {conflitoAgendamento
+        ? "Este horário apresenta conflito com outro atendimento."
+        : "Defina a data e a hora do atendimento."}
+    </p>
+  </div>
+
+  {/* VALOR */}
+  <div className="space-y-2 sm:col-span-1 xl:col-span-3">
+    <label
+      htmlFor="valor"
+      className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#694955]"
+    >
+      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#f8e9ed] text-sm">
+        💰
+      </span>
+      Valor cobrado
+      <span className="text-rose-500">*</span>
+    </label>
+
+    <div className="flex h-12 overflow-hidden rounded-xl border border-[#ead7dd] bg-white shadow-sm transition-all focus-within:border-[#b76e79] focus-within:ring-4 focus-within:ring-[#b76e79]/10">
+      <span className="flex items-center border-r border-[#ead7dd] bg-[#fbf4f6] px-4 text-sm font-bold text-[#98586b]">
+        R$
+      </span>
+
+      <input
+        id="valor"
+        type="number"
+        min="0"
+        step="0.01"
+        value={valor}
+        onChange={(e) => setValor(e.target.value)}
+        required
+        placeholder="0,00"
+        className="h-full min-w-0 flex-1 bg-transparent px-4 text-sm font-semibold text-[#49343d] focus:outline-none"
+      />
+    </div>
+
+    <p className="text-xs leading-relaxed text-[#8d7b82]">
+      O valor é preenchido automaticamente ao escolher o serviço.
+    </p>
+  </div>
+
+  {/* CONFIRMAR */}
+  <div className="flex flex-col justify-end sm:col-span-1 xl:col-span-3">
+    <button
+      type="submit"
+      disabled={mutationCriar.isPending || !!conflitoAgendamento}
+      className={`flex h-12 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold shadow-md transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 ${
+        conflitoAgendamento
+          ? "bg-rose-100 text-rose-700 shadow-none"
+          : "bg-gradient-to-r from-[#b76e79] to-[#98586b] text-white shadow-[#b76e79]/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#b76e79]/25"
+      }`}
+    >
+      {mutationCriar.isPending ? (
+        <>
+          <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+          Agendando...
+        </>
+      ) : conflitoAgendamento ? (
+        <>
+          <span aria-hidden="true">⚠️</span>
+          Horário indisponível
+        </>
+      ) : (
+        <>
+          <span aria-hidden="true">✓</span>
+          Confirmar agendamento
+        </>
+      )}
+    </button>
+
+    <p className="mt-2 text-center text-xs text-[#8d7b82]">
+      Confira os dados antes de confirmar.
+    </p>
+  </div>
+</form>
         {conflitoAgendamento && (
           <div className="px-4 pb-4 md:px-8 md:pb-6 -mt-1">
             <div className="p-3 md:p-4 bg-rose-100/80 border border-rose-300 rounded-xl md:rounded-2xl flex items-center gap-3 text-rose-900 text-xs font-bold shadow-sm">
@@ -634,7 +740,7 @@ export function Agenda({ agendamentos = [], profissionais = [], servicos = [] }:
             {/* --- VISUALIZAÇÃO EM TABELA (DESKTOP: mostra a partir do md) --- */}
             <div className="hidden md:block overflow-x-auto">
               <table className="min-w-full divide-y divide-violet-200/40 text-left text-xs text-[#1a0933]">
-                <thead className="bg-[#e9e3ff]/50 text-[10px] uppercase font-black text-violet-800 tracking-widest border-b border-violet-200/40">
+                <thead className="border-b border-violet-200/40 bg-[#e9e3ff]/50 text-[10px] font-black uppercase tracking-widest text-violet-800">
                   <tr>
                     <th className="px-6 py-5">Profissional</th>
                     <th className="px-6 py-5">Serviço</th>
@@ -663,7 +769,7 @@ export function Agenda({ agendamentos = [], profissionais = [], servicos = [] }:
                       </td>
 
                       <td className="px-6 py-4.5">
-                        <span className="font-black text-xs text-[#1a0933] bg-violet-100/80 px-3 py-1.5 rounded-xl border border-violet-200/50 uppercase tracking-wide">
+                        <span className="inline-block max-w-full whitespace-normal break-words rounded-xl border border-violet-200/50 bg-violet-100/80 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-[#1a0933]">
                           {agend.servico_nome}
                         </span>
                       </td>
